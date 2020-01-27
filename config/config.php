@@ -15,7 +15,7 @@ $return = [
     | A list of connections will be built from your .env file.
     |
     | Specify CUSTOM CONNECTION details with values in the format:
-    |   SWAPCON__[con-type]__[con-name]__[setting-name]=
+    |   SWAPCON__<con-type>__<con-name>__<setting-name>=
     |
     | eg.
     |   SWAPCON__DATABASE__MYSQL2__HOST=xxx
@@ -37,7 +37,7 @@ $return = [
     |
     | SwapCon supports CONNECTION GROUPS which allows you to specify alternate
     | connections that can be chosen from. Specify them with values in the format:
-    |   SWAPCON__GROUP__[con-type]__[con-name]=xxx,yyy,zzz
+    |   SWAPCON__GROUP__<con-type>__<con-name>=xxx,yyy,zzz
     |
     | eg.
     |   SWAPCON__GROUP__DATABASE__MYSQLRO=mysqlro1,mysqlro2,mysqlro3
@@ -67,7 +67,7 @@ $return = [
     |
     |
     |
-    | The possible [con-types] are:
+    | The possible <con-types> are:
     |
     |   BROADCASTING -> $swapCon->swapBroadcast('pusher', $callback);
     |   CACHE        -> $swapCon->swapCache('redis', $callback);
