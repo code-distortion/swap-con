@@ -1,6 +1,10 @@
 # SwapCon
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/code-distortion/swap-con.svg?style=flat-square)](https://packagist.org/packages/code-distortion/swap-con) ![PHP from Packagist](https://img.shields.io/packagist/php-v/code-distortion/swap-con?style=flat-square)  [![contributor covenant](https://img.shields.io/badge/contributor%20covenant-v1.4%20adopted-ff69b4.svg?style=flat-square)](code-of-conduct.md)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/code-distortion/swap-con.svg?style=flat-square)](https://packagist.org/packages/code-distortion/swap-con)
+![PHP from Packagist](https://img.shields.io/packagist/php-v/code-distortion/swap-con?style=flat-square)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/code-distortion/swap-con/run-tests?label=tests&style=flat-square)](https://github.com/code-distortion/swap-con/actions)
+[![Buy us a tree](https://img.shields.io/badge/treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://offset.earth/treeware?gift-trees)
+[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v2.0%20adopted-ff69b4.svg?style=flat-square)](CODE_OF_CONDUCT.md)
 
 Have you ever wanted to change database connections at runtime in Laravel but found it difficult?
 
@@ -50,7 +54,7 @@ In fact, SwapCon lets you change **broadcasting**, **cache**, **filesystem**, **
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require code-distortion/swap-con
@@ -92,7 +96,7 @@ By changing the default connection, your code will start interacting with this n
 
 ``` php
 // swap the current database connection for the duration of the callback
-SwapCon::swapDB('mysql2', $callback); // the swapDB method is an alias of swapDatabase
+SwapCon::swapDB('mysql2', $callback); // or ->swapDatabase(..)
 ```
 
 ***Note:*** The ***swap*** methods will catch and re-throw exceptions, making sure to replace the original connection back again so you don't have to. This is the safest way to alternate between connections.
@@ -101,7 +105,7 @@ You can also simply change the default database to use:
 
 ``` php
 // change the current database
-SwapCon::useDB('mysql2'); // the useDB method is an alias of useDatabase
+SwapCon::useDB('mysql2'); // or ->useDatabase(..)
 ```
 
 You can manage the other connection types too using these methods:
@@ -268,7 +272,7 @@ Alternatively you can update a connection that already exists:
 SwapCon::updateDB('tenant', ['database' => $tenantDB]);
 ```
 
-***Note:*** This library's purpose is to help you manage connections,  it won't try to manage multi-tenancy itself. You will need to determine the tenant and set the connections yourself.   
+***Note:*** The purpose of this library is to help you manage connections, it won't try to manage the actual multi-tenancy. You will need to determine the tenant and set the connections yourself.
 
 ## Testing
 
@@ -283,6 +287,16 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ### SemVer
 
 This library uses [SemVer 2.0.0](https://semver.org/) versioning. This means that changes to `X` indicate a breaking change: `0.0.X`, `0.X.y`, `X.y.z`. When this library changes to version 1.0.0, 2.0.0 and so forth it doesn't indicate that it's necessarily a notable release, it simply indicates that the changes were breaking.
+
+## Treeware
+
+You're free to use this package, but if it makes it to your production environment please plant or buy a tree for the world.
+
+It's now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to <a href="https://www.bbc.co.uk/news/science-environment-48870920">plant trees</a>. If you support this package and contribute to the Treeware forest you'll be creating employment for local families and restoring wildlife habitats.
+
+You can buy trees here [offset.earth/treeware](https://offset.earth/treeware?gift-trees)
+
+Read more about Treeware at [treeware.earth](http://treeware.earth)
 
 ## Contributing
 
