@@ -8,6 +8,7 @@ use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 use CodeDistortion\SwapCon\Tests\Laravel\TestCase;
 use CodeDistortion\SwapCon\SwapConFacade as SwapCon;
 use Exception;
+use PHPUnit\Framework\Constraint\Exception as ConstraintException;
 
 /**
  * Test the SwapCon library class
@@ -113,7 +114,7 @@ class SwapConUnitTest extends TestCase
                 'clone' => $clone,
             ],
         ];
-        $envPath = App::basePath('../../../../tests');
+        $envPath = realpath(__DIR__.'/../../');
         $configData = array_merge(
             $configData,
             SwapCon::buildConfig($envPath, $envFilename)
@@ -183,17 +184,21 @@ class SwapConUnitTest extends TestCase
      */
     public function test_that_env_file_errors_throw_exceptions(): void
     {
-        // .env contains a setting with an invalid config type
-        $this->assertThrows(InvalidConfigException::class, function () {
-            $reuse = $clone = [];
-            $this->buildConfig($reuse, $clone, '.env.test-invalid1');
-        });
+        // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+        if (class_exists(ConstraintException::class)) {
 
-        // .env contains a group setting containing no connections
-        $this->assertThrows(InvalidConfigException::class, function () {
-            $reuse = $clone = [];
-            $this->buildConfig($reuse, $clone, '.env.test-invalid2');
-        });
+            // .env contains a setting with an invalid config type
+            $this->assertThrows(InvalidConfigException::class, function () {
+                $reuse = $clone = [];
+                $this->buildConfig($reuse, $clone, '.env.test-invalid1');
+            });
+
+            // .env contains a group setting containing no connections
+            $this->assertThrows(InvalidConfigException::class, function () {
+                $reuse = $clone = [];
+                $this->buildConfig($reuse, $clone, '.env.test-invalid2');
+            });
+        }
     }
 
     /**
@@ -220,15 +225,19 @@ class SwapConUnitTest extends TestCase
         string $configConnectionName
     ): void {
 
-        $reuse = $clone = [];
-        $this->buildConfig($reuse, $clone, '.env.test1');
+        // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+        if (class_exists(ConstraintException::class)) {
 
-        $this->assertThrows(InvalidConfigException::class, function () use ($resolveMethod) {
-            $callable = ['SwapCon', $resolveMethod];
-            if (is_callable($callable)) { // to please phpstan
-                forward_static_call_array($callable, ['con1']);
-            }
-        });
+            $reuse = $clone = [];
+            $this->buildConfig($reuse, $clone, '.env.test1');
+
+            $this->assertThrows(InvalidConfigException::class, function () use ($resolveMethod) {
+                $callable = ['SwapCon', $resolveMethod];
+                if (is_callable($callable)) { // to please phpstan
+                    forward_static_call_array($callable, ['con1']);
+                }
+            });
+        }
     }
 
     /**
@@ -255,15 +264,19 @@ class SwapConUnitTest extends TestCase
         string $configConnectionName
     ): void {
 
-        $reuse = $clone = [];
-        $this->buildConfig($reuse, $clone, '.env.test-invalid3');
+        // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+        if (class_exists(ConstraintException::class)) {
 
-        $this->assertThrows(ConnectionResolutionException::class, function () use ($resolveMethod) {
-            $callable = ['SwapCon', $resolveMethod];
-            if (is_callable($callable)) { // to please phpstan
-                forward_static_call_array($callable, ['group1']);
-            }
-        });
+            $reuse = $clone = [];
+            $this->buildConfig($reuse, $clone, '.env.test-invalid3');
+
+            $this->assertThrows(ConnectionResolutionException::class, function () use ($resolveMethod) {
+                $callable = ['SwapCon', $resolveMethod];
+                if (is_callable($callable)) { // to please phpstan
+                    forward_static_call_array($callable, ['group1']);
+                }
+            });
+        }
     }
 
     /**
@@ -290,15 +303,19 @@ class SwapConUnitTest extends TestCase
         string $configConnectionName
     ): void {
 
-        $reuse = $clone = [];
-        $this->buildConfig($reuse, $clone, '.env.test1');
+        // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+        if (class_exists(ConstraintException::class)) {
 
-        $this->assertThrows(ConnectionResolutionException::class, function () use ($resolveMethod) {
-            $callable = ['SwapCon', $resolveMethod];
-            if (is_callable($callable)) { // to please phpstan
-                forward_static_call_array($callable, ['group1']);
-            }
-        });
+            $reuse = $clone = [];
+            $this->buildConfig($reuse, $clone, '.env.test1');
+
+            $this->assertThrows(ConnectionResolutionException::class, function () use ($resolveMethod) {
+                $callable = ['SwapCon', $resolveMethod];
+                if (is_callable($callable)) { // to please phpstan
+                    forward_static_call_array($callable, ['group1']);
+                }
+            });
+        }
     }
 
     /**
@@ -410,13 +427,19 @@ class SwapConUnitTest extends TestCase
             $this->assertSame('con4', $resolved);
             $this->assertSame($expected, config("$configName.$configConnectionName.$resolved"));
 
-            // test that an exception is thrown when a connection isn't found
-            $this->assertThrows(
-                ConnectionResolutionException::class,
-                function () use ($resolveCallable) {
-                    forward_static_call_array($resolveCallable, ['con5']);
-                }
-            );
+
+
+            // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+            if (class_exists(ConstraintException::class)) {
+
+                // test that an exception is thrown when a connection isn't found
+                $this->assertThrows(
+                    ConnectionResolutionException::class,
+                    function () use ($resolveCallable) {
+                        forward_static_call_array($resolveCallable, ['con5']);
+                    }
+                );
+            }
         }
     }
 
@@ -456,13 +479,17 @@ class SwapConUnitTest extends TestCase
             forward_static_call_array($copyCallable, ['test1', 'test2']);
             $this->assertSame($expected, config("$configName.$configConnectionName.test2"));
 
-            // an exception will be thrown because the connection already exists
-            $this->assertThrows(
-                ConnectionResolutionException::class,
-                function () use ($copyCallable) {
-                    forward_static_call_array($copyCallable, ['test1', 'test2', []]);
-                }
-            );
+            // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+            if (class_exists(ConstraintException::class)) {
+
+                // an exception will be thrown because the connection already exists
+                $this->assertThrows(
+                    ConnectionResolutionException::class,
+                    function () use ($copyCallable) {
+                        forward_static_call_array($copyCallable, ['test1', 'test2', []]);
+                    }
+                );
+            }
 
             // won't throw an exception because the flag is set
             forward_static_call_array($copyCallable, ['test1', 'test2', [], true]);
@@ -587,19 +614,24 @@ class SwapConUnitTest extends TestCase
             $this->assertSame('test1', config("$configName.default"));
 
 
-            // call the 'swap' method - and throw an exception
-            $callbackConnection = null;
-            $this->assertThrows(
-                Exception::class,
-                function () use (&$callbackConnection, $configName, $swapCallable) {
-                    $callback = function () use (&$callbackConnection, $configName) {
-                        $callbackConnection = config("$configName.default");
-                        throw new Exception('test');
-                    };
-                    forward_static_call_array($swapCallable, ['test2', $callback]);
-                }
-            );
-            $this->assertSame('test2', $callbackConnection);
+
+            // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
+            if (class_exists(ConstraintException::class)) {
+
+                // call the 'swap' method - and throw an exception
+                $callbackConnection = null;
+                $this->assertThrows(
+                    Exception::class,
+                    function () use (&$callbackConnection, $configName, $swapCallable) {
+                        $callback = function () use (&$callbackConnection, $configName) {
+                            $callbackConnection = config("$configName.default");
+                            throw new Exception('test');
+                        };
+                        forward_static_call_array($swapCallable, ['test2', $callback]);
+                    }
+                );
+                $this->assertSame('test2', $callbackConnection);
+            }
 
             // check the connection was returned to normal
             $this->assertSame('test1', config("$configName.default"));

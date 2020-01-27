@@ -5,6 +5,7 @@ namespace CodeDistortion\SwapCon;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 use Dotenv\Dotenv;
 use Dotenv\Environment\DotenvFactory;
+use Dotenv\Parser;
 
 /**
  * Trait containing SwapCon's method to build the config data from a .env file
@@ -27,15 +28,41 @@ trait BuildConfigTrait
 
         // passing no factories stops Dotenv from populating to getenv(), $_ENV and $_SERVER
         $length = mb_strlen(static::ENV_PREFIX);
-        $factory = new DotenvFactory([]);
-        $dotenv = Dotenv::create($directory, $filename, $factory);
-        $values = $dotenv->load();
+        // phpdotenv 3+
+        if (class_exists(DotenvFactory::class)) {
+            $factory = new DotenvFactory([]);
+            $dotenv = Dotenv::create($directory, $filename, $factory);
+            $values = $dotenv->load();
+        // older phpdotenv
+        } else {
+            $dotenv = new Dotenv($directory, $filename);
+
+            // split the NAME=VALUE parts up
+            $values = [];
+            foreach ($dotenv->load() as $row) {
+
+                $temp = explode('=', $row);
+                if (count($temp) >= 2) {
+
+                    // early phpdotenv around 2.2 doesn't have Parser
+                    if (class_exists(Parser::class)) {
+                        $name = Parser::parseName(array_shift($temp));
+                        $value = Parser::parseName(implode('=', $temp));
+                    } else {
+                        $name = array_shift($temp);
+                        $value = implode('=', $temp);
+                    }
+                    $values[$name] = $value;
+                }
+            }
+        }
 
 
 
         // pick out the relevant settings
         $groups = $connectionData = [];
         foreach ($values as $name => $value) {
+
             if (mb_substr($name, 0, $length) == static::ENV_PREFIX) {
 
                 // look for GROUPS

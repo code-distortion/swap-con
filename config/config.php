@@ -94,4 +94,4 @@ $return = [
 ];
 
 // add connection details based on the current .env file
-return array_merge($return, resolve(SwapCon::class)->buildConfig());
+return array_merge($return, app(SwapCon::class)->buildConfig());
