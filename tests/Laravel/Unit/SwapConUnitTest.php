@@ -118,7 +118,7 @@ class SwapConUnitTest extends TestCase
             $configData,
             SwapCon::buildConfig($envPath, $envFilename)
         );
-        config(['swapcon' => $configData]); // store the values in Laravel's config
+        config(['code-distortion.swapcon' => $configData]); // store the values in Laravel's config
 
         return $configData;
     }
@@ -372,7 +372,7 @@ class SwapConUnitTest extends TestCase
                     ],
                 ],
             ];
-            config(['swapcon' => $swapConConfig]);
+            config(['code-distortion.swapcon' => $swapConConfig]);
 
 
             // set up the original connection to copy from

@@ -56,7 +56,7 @@ class SwapConServiceProvider extends BaseServiceProvider
         // initialise the config
         $configPath = __DIR__.'/../config/config.php';
         try {
-            $this->mergeConfigFrom($configPath, 'swapcon');
+            $this->mergeConfigFrom($configPath, 'code-distortion.swapcon');
         } catch (InvalidPathException $e) {
         }
 
@@ -65,7 +65,7 @@ class SwapConServiceProvider extends BaseServiceProvider
         && ($this->app->runningInConsole())) {
 
             $this->publishes(
-                [$configPath => config_path('swapcon.php'),],
+                [$configPath => config_path('code-distortion.swapcon.php'),],
                 'config'
             );
         }

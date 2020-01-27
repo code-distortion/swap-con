@@ -24,7 +24,7 @@ class SwapCon
      *
      * @var string
      */
-    protected const CONFIG_NAME = 'swapcon';
+    protected const CONFIG_NAME = 'code-distortion.swapcon';
 
     /**
      * The prefix given to swap-con .env settings
