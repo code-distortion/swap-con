@@ -3,13 +3,13 @@
 namespace CodeDistortion\SwapCon\Exceptions;
 
 /**
- * Exception for when invalid config details are used
+ * Exception for when invalid config details are used.
  */
 class InvalidConfigException extends SwapConException
 {
 
     /**
-     * Return a new instance when an unexpected config-type was specified
+     * Return a new instance when an unexpected config-type was specified.
      *
      * @param string $config    The name of the unexpected config-type used.
      * @param array  $available The valid config-types.
@@ -23,7 +23,7 @@ class InvalidConfigException extends SwapConException
     }
 
     /**
-     * Return a new instance when multiple templates are given for one connection
+     * Return a new instance when multiple templates are given for one connection.
      *
      * @param string $config The config-type used.
      * @param string $clone  The connection to clone.
@@ -35,7 +35,7 @@ class InvalidConfigException extends SwapConException
     }
 
     /**
-     * Return a new instance when a group looks empty
+     * Return a new instance when a group looks empty.
      *
      * @param string $config The config-type the group belongs to.
      * @param string $group  The group that's empty.

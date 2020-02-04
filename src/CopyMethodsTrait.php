@@ -6,13 +6,13 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 
 /**
- * Trait containing SwapCon's public "swap" methods
+ * Trait containing SwapCon's public "swap" methods.
  */
 trait CopyMethodsTrait
 {
 
     /**
-     * Copy a BROADCASTING connection to another
+     * Copy a BROADCASTING connection to another.
      *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
@@ -32,7 +32,7 @@ trait CopyMethodsTrait
     }
 
     /**
-     * Copy a CACHE connection to another
+     * Copy a CACHE connection to another.
      *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
@@ -52,7 +52,7 @@ trait CopyMethodsTrait
     }
 
     /**
-     * Copy a DATABASE connection to another
+     * Copy a DATABASE connection to another.
      *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
@@ -72,9 +72,10 @@ trait CopyMethodsTrait
     }
 
     /**
-     * Copy a DATABASE connection to another
+     * Copy a DATABASE connection to another.
      *
      * alias for copyDatabaseConnection(…).
+     *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
      * @param array       $configData     The config values to add.
@@ -93,7 +94,7 @@ trait CopyMethodsTrait
     }
 
     /**
-     * Copy a FILESYSTEMS connection to another
+     * Copy a FILESYSTEMS connection to another.
      *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
@@ -113,7 +114,7 @@ trait CopyMethodsTrait
     }
 
     /**
-     * Copy a LOGGING connection to another
+     * Copy a LOGGING connection to another.
      *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
@@ -133,7 +134,7 @@ trait CopyMethodsTrait
     }
 
     /**
-     * Copy a QUEUE connection to another
+     * Copy a QUEUE connection to another.
      *
      * @param string|null $sourceCon      The connection to clone.
      * @param string      $newCon         The new connection to save.
@@ -157,7 +158,7 @@ trait CopyMethodsTrait
 
 
     /**
-     * Build a new connection's details ready to be added to the config
+     * Build a new connection's details ready to be added to the config.
      *
      * @param string      $config         The config file to look into.
      * @param string|null $sourceCon      The connection to clone.

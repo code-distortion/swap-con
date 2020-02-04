@@ -6,14 +6,15 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 
 /**
- * Trait containing SwapCon's public "resolve" methods
+ * Trait containing SwapCon's public "resolve" methods.
  */
 trait ResolveMethodsTrait
 {
     /**
-     * Pick a BROADCASTING connection for the given connection name
+     * Pick a BROADCASTING connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -25,9 +26,10 @@ trait ResolveMethodsTrait
     }
 
     /**
-     * Pick a CACHE connection for the given connection name
+     * Pick a CACHE connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -39,9 +41,10 @@ trait ResolveMethodsTrait
     }
 
     /**
-     * Pick a DATABASE connection for the given connection name
+     * Pick a DATABASE connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -53,10 +56,11 @@ trait ResolveMethodsTrait
     }
 
     /**
-     * Pick a DATABASE connection for the given connection name
+     * Pick a DATABASE connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
      * alias for resolveDatabase(…).
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -68,9 +72,10 @@ trait ResolveMethodsTrait
     }
 
     /**
-     * Pick a FILESYSTEMS connection for the given connection name
+     * Pick a FILESYSTEMS connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -82,9 +87,10 @@ trait ResolveMethodsTrait
     }
 
     /**
-     * Pick a LOGGING connection for the given connection name
+     * Pick a LOGGING connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -96,9 +102,10 @@ trait ResolveMethodsTrait
     }
 
     /**
-     * Pick a QUEUE connection for the given connection name
+     * Pick a QUEUE connection for the given connection name.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string $name The connection to use.
      * @return string
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -114,7 +121,7 @@ trait ResolveMethodsTrait
 
 
     /**
-     * Choose a connection to use
+     * Choose a connection to use.
      *
      * @param string $config     The config file to look into.
      * @param string $connection The connection to resolve.
@@ -134,7 +141,7 @@ trait ResolveMethodsTrait
 
 
     /**
-     * Choose a connection to use
+     * Choose a connection to use.
      *
      * @param string $config The config to resolve-all for (optional).
      * @return void

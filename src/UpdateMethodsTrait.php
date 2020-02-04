@@ -6,13 +6,13 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 
 /**
- * Trait containing SwapCon's public "swap" methods
+ * Trait containing SwapCon's public "swap" methods.
  */
 trait UpdateMethodsTrait
 {
 
     /**
-     * Update value/s in an existing BROADCASTING connection
+     * Update value/s in an existing BROADCASTING connection.
      *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
@@ -27,7 +27,7 @@ trait UpdateMethodsTrait
     }
 
     /**
-     * Update value/s in an existing CACHE connection
+     * Update value/s in an existing CACHE connection.
      *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
@@ -42,7 +42,7 @@ trait UpdateMethodsTrait
     }
 
     /**
-     * Update value/s in an existing DATABASE connection
+     * Update value/s in an existing DATABASE connection.
      *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
@@ -57,9 +57,10 @@ trait UpdateMethodsTrait
     }
 
     /**
-     * Update value/s in an existing DATABASE connection
+     * Update value/s in an existing DATABASE connection.
      *
      * alias for updateDatabase(…).
+     *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
      * @return void
@@ -73,7 +74,7 @@ trait UpdateMethodsTrait
     }
 
     /**
-     * Update value/s in an existing FILESYSTEMS connection
+     * Update value/s in an existing FILESYSTEMS connection.
      *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
@@ -88,7 +89,7 @@ trait UpdateMethodsTrait
     }
 
     /**
-     * Update value/s in an existing LOGGING connection
+     * Update value/s in an existing LOGGING connection.
      *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
@@ -103,7 +104,7 @@ trait UpdateMethodsTrait
     }
 
     /**
-     * Update value/s in an existing QUEUE connection
+     * Update value/s in an existing QUEUE connection.
      *
      * @param string $connection The connection to update.
      * @param array  $configData The config values to add.
@@ -124,7 +125,7 @@ trait UpdateMethodsTrait
 
 
     /**
-     * Update value/s in an existing connection
+     * Update value/s in an existing connection.
      *
      * @param string $config     The config file to look into.
      * @param string $connection The connection to update.

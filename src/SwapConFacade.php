@@ -5,7 +5,7 @@ namespace CodeDistortion\SwapCon;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * SwapConFacade Facade for Laravel
+ * SwapConFacade Facade for Laravel.
  */
 class SwapConFacade extends Facade
 {

@@ -3,12 +3,12 @@
 namespace CodeDistortion\SwapCon\Exceptions;
 
 /**
- * Exception for when connections cannot be resolved
+ * Exception for when connections cannot be resolved.
  */
 class ConnectionResolutionException extends SwapConException
 {
     /**
-     * Return a new instance when circular references end up looping indefinitely
+     * Return a new instance when circular references end up looping indefinitely.
      *
      * @param string $config     The config type used.
      * @param string $connection The connection that was specified.
@@ -23,7 +23,7 @@ class ConnectionResolutionException extends SwapConException
     }
 
     /**
-     * Return a new instance when the given connection could not be found
+     * Return a new instance when the given connection could not be found.
      *
      * @param string $config     The config type used.
      * @param string $connection The connection that was specified.
@@ -35,7 +35,7 @@ class ConnectionResolutionException extends SwapConException
     }
 
     /**
-     * Return a new instance when a connection already exists
+     * Return a new instance when a connection already exists.
      *
      * @param string $config     The config type used.
      * @param string $connection The connection that was specified.

@@ -6,15 +6,16 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 
 /**
- * Trait containing SwapCon's public "use" methods
+ * Trait containing SwapCon's public "use" methods.
  */
 trait UseMethodsTrait
 {
 
     /**
-     * Change the active (default) BROADCASTING connection to another
+     * Change the active (default) BROADCASTING connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -26,9 +27,10 @@ trait UseMethodsTrait
     }
 
     /**
-     * Change the active (default) CACHE connection to another
+     * Change the active (default) CACHE connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -40,9 +42,10 @@ trait UseMethodsTrait
     }
 
     /**
-     * Change the active (default) DATABASE connection to another
+     * Change the active (default) DATABASE connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -54,10 +57,11 @@ trait UseMethodsTrait
     }
 
     /**
-     * Change the active (default) DATABASE connection to another
+     * Change the active (default) DATABASE connection to another.
      *
      * Does NOT restore the original connection afterwards.
      * alias for useDatabase(…).
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -69,9 +73,10 @@ trait UseMethodsTrait
     }
 
     /**
-     * Change the active (default) FILESYSTEMS connection to another
+     * Change the active (default) FILESYSTEMS connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -83,9 +88,10 @@ trait UseMethodsTrait
     }
 
     /**
-     * Change the active (default) LOGGING connection to another
+     * Change the active (default) LOGGING connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -97,9 +103,10 @@ trait UseMethodsTrait
     }
 
     /**
-     * Change the active (default) QUEUE connection to another
+     * Change the active (default) QUEUE connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $name The connection to use.
      * @return mixed
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
@@ -115,9 +122,10 @@ trait UseMethodsTrait
 
 
     /**
-     * Change the active (default) connection to another
+     * Change the active (default) connection to another.
      *
      * Does NOT restore the original connection afterwards.
+     *
      * @param string $config     The config file to look into.
      * @param string $connection The connection to use.
      * @return mixed

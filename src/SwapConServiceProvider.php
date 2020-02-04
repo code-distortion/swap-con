@@ -6,12 +6,12 @@ use Dotenv\Exception\InvalidPathException;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
- * SwapCon ServiceProvider for Laravel
+ * SwapCon ServiceProvider for Laravel.
  */
 class SwapConServiceProvider extends BaseServiceProvider
 {
     /**
-     * Service-provider register method
+     * Service-provider register method.
      *
      * @return void
      */
@@ -23,7 +23,7 @@ class SwapConServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * Service-provider boot method
+     * Service-provider boot method.
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class SwapConServiceProvider extends BaseServiceProvider
 
 
     /**
-     * Initialise the config settings/file
+     * Initialise the config settings/file.
      *
      * @return void
      */

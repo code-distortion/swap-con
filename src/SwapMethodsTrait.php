@@ -6,15 +6,16 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 
 /**
- * Trait containing SwapCon's public "swap" methods
+ * Trait containing SwapCon's public "swap" methods.
  */
 trait SwapMethodsTrait
 {
 
     /**
-     * Swap the active (default) BROADCASTING connection to another and run the given closure
+     * Swap the active (default) BROADCASTING connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -27,9 +28,10 @@ trait SwapMethodsTrait
     }
 
     /**
-     * Swap the active (default) CACHE connection to another and run the given closure
+     * Swap the active (default) CACHE connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -42,9 +44,10 @@ trait SwapMethodsTrait
     }
 
     /**
-     * Swap the active (default) DATABASE connection to another and run the given closure
+     * Swap the active (default) DATABASE connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -57,10 +60,11 @@ trait SwapMethodsTrait
     }
 
     /**
-     * Swap the active (default) DATABASE connection to another and run the given closure
+     * Swap the active (default) DATABASE connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
      * alias for swapDatabase(…).
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -73,9 +77,10 @@ trait SwapMethodsTrait
     }
 
     /**
-     * Swap the active (default) FILESYSTEMS connection to another and run the given closure
+     * Swap the active (default) FILESYSTEMS connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -88,9 +93,10 @@ trait SwapMethodsTrait
     }
 
     /**
-     * Swap the active (default) LOGGING connection to another and run the given closure
+     * Swap the active (default) LOGGING connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -103,9 +109,10 @@ trait SwapMethodsTrait
     }
 
     /**
-     * Swap the active (default) QUEUE connection to another and run the given closure
+     * Swap the active (default) QUEUE connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $name    The connection to use.
      * @param callable $closure The closure to call once the connection has been swapped.
      * @return mixed
@@ -122,9 +129,10 @@ trait SwapMethodsTrait
 
 
     /**
-     * Swap the active (default) connection to another and run the given closure
+     * Swap the active (default) connection to another and run the given closure.
      *
      * Restores the original connection afterwards.
+     *
      * @param string   $config     The config file to look into.
      * @param string   $connection The connection to use.
      * @param callable $closure    The closure to call once the connection has been swapped.

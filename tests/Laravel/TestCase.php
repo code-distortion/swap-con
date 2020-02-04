@@ -4,11 +4,11 @@ namespace CodeDistortion\SwapCon\Tests\Laravel;
 
 use CodeDistortion\SwapCon\SwapConFacade;
 use CodeDistortion\SwapCon\SwapConServiceProvider;
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use Jchook\AssertThrows\AssertThrows;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 /**
- * The test case that unit tests extend from
+ * The test case that unit tests extend from.
  */
 class TestCase extends BaseTestCase
 {

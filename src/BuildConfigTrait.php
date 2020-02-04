@@ -8,12 +8,12 @@ use Dotenv\Environment\DotenvFactory;
 use Dotenv\Parser;
 
 /**
- * Trait containing SwapCon's method to build the config data from a .env file
+ * Trait containing SwapCon's method to build the config data from a .env file.
  */
 trait BuildConfigTrait
 {
     /**
-     * Find SwapCon values in the .env file and build the desired config values from them
+     * Find SwapCon values in the .env file and build the desired config values from them.
      *
      * @param string $directory The directory the .env file is in.
      * @param string $filename  The name of an alternate file to use.

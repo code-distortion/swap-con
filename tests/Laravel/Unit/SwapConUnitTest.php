@@ -11,7 +11,7 @@ use Exception;
 use PHPUnit\Framework\Constraint\Exception as ConstraintException;
 
 /**
- * Test the SwapCon library class
+ * Test the SwapCon library class.
  *
  * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
@@ -99,7 +99,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Build and set the swapcon config
+     * Build and set the swapcon config.
      *
      * @param array  $reuse       The fallback 'reuse' section of the config.
      * @param array  $clone       The fallback 'clone' section of the config.
@@ -129,7 +129,7 @@ class SwapConUnitTest extends TestCase
 
 
     /**
-     * Test that the settings in the .env file are interpreted correctly
+     * Test that the settings in the .env file are interpreted correctly.
      *
      * @test
      * @return void
@@ -177,7 +177,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that exceptions are thrown properly when invalid .env values are found
+     * Test that exceptions are thrown properly when invalid .env values are found.
      *
      * @test
      * @return void
@@ -202,7 +202,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that exceptions are thrown properly when invalid .env values are found
+     * Test that exceptions are thrown properly when invalid .env values are found.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -241,7 +241,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that exceptions are thrown when circular references are found
+     * Test that exceptions are thrown when circular references are found.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -280,7 +280,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that exceptions are thrown properly when invalid .env values are found
+     * Test that exceptions are thrown properly when invalid .env values are found.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -319,7 +319,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that connection groups resolve to connections properly
+     * Test that connection groups resolve to connections properly.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -444,7 +444,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that connection copying works properly
+     * Test that connection copying works properly.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -503,7 +503,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that connection updating works properly
+     * Test that connection updating works properly.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -546,7 +546,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that the 'swap' methods work properly
+     * Test that the 'swap' methods work properly.
      *
      * @test
      * @dataProvider staticMethodDataProvider
@@ -643,7 +643,7 @@ class SwapConUnitTest extends TestCase
 
 
     /**
-     * A version of php's var_export that renders arrays as [] instead of array()
+     * A version of PHP's var_export that renders arrays as [] instead of array().
      *
      * @param mixed   $value The value to var-export.
      * @param integer $depth The current depth.

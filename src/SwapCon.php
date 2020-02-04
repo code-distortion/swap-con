@@ -8,7 +8,7 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use DB;
 
 /**
- * SwapCon - Manage swapping between different connections (like databases)
+ * SwapCon - Manage swapping between different connections (like databases).
  */
 class SwapCon
 {
@@ -20,21 +20,21 @@ class SwapCon
     use UseMethodsTrait;
 
     /**
-     * The name of this package's config file
+     * The name of this package's config file.
      *
      * @var string
      */
     protected const CONFIG_NAME = 'code-distortion.swapcon';
 
     /**
-     * The prefix given to swap-con .env settings
+     * The prefix given to swap-con .env settings.
      *
      * @var string
      */
     protected const ENV_PREFIX = 'SWAPCON';
 
     /**
-     * The names of the "connections" array inside each config file that can be added to
+     * The names of the "connections" array inside each config file that can be added to.
      *
      * @var array
      */
@@ -48,15 +48,16 @@ class SwapCon
     ];
 
     /**
-     * The maximum number of times to recurse before throwing an exception
+     * The maximum number of times to recurse before throwing an exception.
      *
-     * Used to avoid circular references
+     * Used to avoid circular references.
+     *
      * @var integer
      */
     protected const MAX_RECURSE_DEPTH = 32;
 
     /**
-     * An internal cache of the replacement connections that have already been used
+     * An internal cache of the replacement connections that have already been used.
      *
      * @var array
      */
@@ -67,9 +68,10 @@ class SwapCon
 
 
     /**
-     * Choose a connection to use - handles the recursion
+     * Choose a connection to use - handles the recursion.
      *
      * This will add the new connection's values to the config if needed.
+     *
      * @param string      $config      The config file to look into.
      * @param string|null $connection  The connection to resolve.
      * @param string|null $origConName The connection originally requested.
@@ -154,7 +156,7 @@ class SwapCon
     }
 
     /**
-     * Build a new connection's details ready to be added to the config
+     * Build a new connection's details ready to be added to the config.
      *
      * @param array       $configData The config values to add.
      * @param string|null $config     The config file to look into.
@@ -178,7 +180,7 @@ class SwapCon
     }
 
     /**
-     * Store the given connection in Laravel's config
+     * Store the given connection in Laravel's config.
      *
      * @param string  $config         The config file to look into.
      * @param string  $connection     The name of the connection to save.
