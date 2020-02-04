@@ -2,9 +2,19 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/code-distortion/swap-con.svg?style=flat-square)](https://packagist.org/packages/code-distortion/swap-con)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/code-distortion/swap-con?style=flat-square)
+![Laravel](https://img.shields.io/badge/laravel-5%20%26%206-blue?style=flat-square)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/code-distortion/swap-con/run-tests?label=tests&style=flat-square)](https://github.com/code-distortion/swap-con/actions)
 [![Buy us a tree](https://img.shields.io/badge/treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://offset.earth/treeware?gift-trees)
 [![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v2.0%20adopted-ff69b4.svg?style=flat-square)](CODE_OF_CONDUCT.md)
+
+***code-distortion/swap-con*** is a Laravel package that gives you control over which database to use and when to change.
+
+In fact, SwapCon lets you change **broadcasting**, **cache**, **filesystem**, **logging** and **queue** connections as well.
+
+``` php
+// swap the current database connection for the duration of the callback
+SwapCon::swapDB('mysql2', $callback); // or ->swapDatabase(..)
+```
 
 Have you ever wanted to change database connections at runtime in Laravel but found it difficult?
 
@@ -47,16 +57,13 @@ $someModel->find(1);
 ],
 ```
 
-
-***code-distortion/swap-con*** is a Laravel package that gives you control over which database to use and when to change.
-
-In fact, SwapCon lets you change **broadcasting**, **cache**, **filesystem**, **logging** and **queue** connections as well.
+SwapCon is an alternative to these methods.
 
 ## Installation
 
 Install the package via composer:
 
-```bash
+``` bash
 composer require code-distortion/swap-con
 ```
 
