@@ -28,8 +28,12 @@ trait BuildConfigTrait
 
         // passing no factories stops Dotenv from populating to getenv(), $_ENV and $_SERVER
         $length = mb_strlen(static::ENV_PREFIX);
+        // phpdotenv 4+
+        if (method_exists(Dotenv::class, 'createImmutable')) {
+            $dotenv = Dotenv::createImmutable($directory, $filename);
+            $values = $dotenv->load();
         // phpdotenv 3+
-        if (class_exists(DotenvFactory::class)) {
+        } elseif (class_exists(DotenvFactory::class)) {
             $factory = new DotenvFactory([]);
             $dotenv = Dotenv::create($directory, $filename, $factory);
             $values = $dotenv->load();
