@@ -164,8 +164,12 @@ class SwapCon
      * @return array
      * @throws InvalidConfigException Thrown when the connection's clone template couldn't be found.
      */
-    protected function buildConData(array $configData, ?string $config, ?string $cloneFrom): array
-    {
+    protected function buildConData(
+        array $configData,
+        ?string $config,
+        ?string $cloneFrom
+    ): array {
+
         // use an existing connection as a template to build the new connection's values
         if (($config) && ($cloneFrom)) {
             $conGroup = static::CONNECT_ARRAY_NAMES[$config];
