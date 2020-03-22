@@ -32,7 +32,7 @@ class SwapConUnitTest extends TestCase
     public function staticMethodDataProvider(): array
     {
         return [
-            [
+            'broadcast' => [
                 'copyBroadcast',
                 'updateBroadcast',
                 'resolveBroadcast',
@@ -41,7 +41,7 @@ class SwapConUnitTest extends TestCase
                 'broadcasting',
                 'connections',
             ],
-            [
+            'cache' => [
                 'copyCache',
                 'updateCache',
                 'resolveCache',
@@ -50,7 +50,7 @@ class SwapConUnitTest extends TestCase
                 'cache',
                 'stores',
             ],
-            [
+            'database' => [
                 'copyDatabase',
                 'updateDatabase',
                 'resolveDatabase',
@@ -59,7 +59,7 @@ class SwapConUnitTest extends TestCase
                 'database',
                 'connections',
             ],
-            [
+            'DB' => [
                 'copyDB',
                 'updateDB',
                 'resolveDB',
@@ -68,7 +68,7 @@ class SwapConUnitTest extends TestCase
                 'database',
                 'connections',
             ],
-            [
+            'filesystem' => [
                 'copyFilesystem',
                 'updateFilesystem',
                 'resolveFilesystem',
@@ -77,7 +77,7 @@ class SwapConUnitTest extends TestCase
                 'filesystems',
                 'disks',
             ],
-            [
+            'log' => [
                 'copyLog',
                 'updateLog',
                 'resolveLog',
@@ -86,7 +86,7 @@ class SwapConUnitTest extends TestCase
                 'logging',
                 'channels',
             ],
-            [
+            'queue' => [
                 'copyQueue',
                 'updateQueue',
                 'resolveQueue',
