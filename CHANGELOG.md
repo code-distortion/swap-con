@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 
+## [0.2.2] - 2020-03-23
+
+### Added
+- Backwards compatibility support for PHP 7.0
+
+
+
 ## [0.2.1] - 2020-03-08
 
 ### Added
