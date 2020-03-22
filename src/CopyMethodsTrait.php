@@ -23,11 +23,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyBroadcast(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyConnection('broadcasting', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -43,11 +43,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyCache(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyConnection('cache', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -63,11 +63,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyDatabase(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyConnection('database', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -85,11 +85,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyDB(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyDatabase($sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -105,11 +105,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyFilesystem(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyConnection('filesystems', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -125,11 +125,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyLog(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyConnection('logging', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -145,11 +145,11 @@ trait CopyMethodsTrait
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
     public function copyQueue(
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
         $this->copyConnection('queue', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
@@ -169,11 +169,11 @@ trait CopyMethodsTrait
      */
     protected function copyConnection(
         string $config,
-        ?string $sourceCon,
+        string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
 
         // build the new config data to save
         $configData = $this->buildConData($configData, $config, $sourceCon);

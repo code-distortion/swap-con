@@ -134,7 +134,7 @@ class SwapConUnitTest extends TestCase
      * @test
      * @return void
      */
-    public function test_that_the_env_file_is_interpreted_properly(): void
+    public function test_that_the_env_file_is_interpreted_properly() // PHP7.1 ): void
     {
 
         $expectedConfig = [
@@ -182,7 +182,7 @@ class SwapConUnitTest extends TestCase
      * @test
      * @return void
      */
-    public function test_that_env_file_errors_throw_exceptions(): void
+    public function test_that_env_file_errors_throw_exceptions() // PHP7.1 ): void
     {
         // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
         if (class_exists(ConstraintException::class)) {
@@ -223,7 +223,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
         if (class_exists(ConstraintException::class)) {
@@ -262,7 +262,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
         if (class_exists(ConstraintException::class)) {
@@ -301,7 +301,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
         if (class_exists(ConstraintException::class)) {
@@ -340,7 +340,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         $resolveCallable = ['SwapCon', $resolveMethod];
         $copyCallable = ['SwapCon', $copyMethod];
@@ -465,7 +465,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         $copyCallable = ['SwapCon', $copyMethod];
         if (is_callable($copyCallable)) { // to please phpstan
@@ -524,7 +524,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         $updateCallable = ['SwapCon', $updateMethod];
         $copyCallable = ['SwapCon', $copyMethod];
@@ -567,7 +567,7 @@ class SwapConUnitTest extends TestCase
         string $swapMethod,
         string $configName,
         string $configConnectionName
-    ): void {
+    ) { // PHP7.1 ): void {
 
         $useCallable = ['SwapCon', $useMethod];
         $swapCallable = ['SwapCon', $swapMethod];

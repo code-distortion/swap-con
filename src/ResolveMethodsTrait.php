@@ -148,7 +148,7 @@ trait ResolveMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when circular references end up looping indefinitely.
      */
-    public function resolveAll(string $config = null): void
+    public function resolveAll(string $config = null) // PHP7.1 ): void
     {
         $configs = config(static::CONFIG_NAME.".connections");
         if ($configs) {

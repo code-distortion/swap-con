@@ -22,7 +22,7 @@ trait UpdateMethodsTrait
     public function updateBroadcast(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateConnection('broadcasting', $connection, $configData);
     }
 
@@ -37,7 +37,7 @@ trait UpdateMethodsTrait
     public function updateCache(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateConnection('cache', $connection, $configData);
     }
 
@@ -52,7 +52,7 @@ trait UpdateMethodsTrait
     public function updateDatabase(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateConnection('database', $connection, $configData);
     }
 
@@ -69,7 +69,7 @@ trait UpdateMethodsTrait
     public function updateDB(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateDatabase($connection, $configData);
     }
 
@@ -84,7 +84,7 @@ trait UpdateMethodsTrait
     public function updateFilesystem(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateConnection('filesystems', $connection, $configData);
     }
 
@@ -99,7 +99,7 @@ trait UpdateMethodsTrait
     public function updateLog(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateConnection('logging', $connection, $configData);
     }
 
@@ -114,7 +114,7 @@ trait UpdateMethodsTrait
     public function updateQueue(
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->updateConnection('queue', $connection, $configData);
     }
 
@@ -137,7 +137,7 @@ trait UpdateMethodsTrait
         string $config,
         string $connection,
         array $configData
-    ): void {
+    ) { // PHP7.1 : void
         $this->copyConnection($config, $connection, $connection, $configData, true);
     }
 }

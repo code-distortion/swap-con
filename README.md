@@ -253,7 +253,7 @@ Alternately you can choose a connection to ***clone*** when needed. If swapped a
 
 ### Changing connection settings in your code
 
-Sometimes you need to change connection settings from within your code. You may wish to do this for example if you have a multi-tenanted website. Your code would need to first run and work out which tenant is needed, and then pick a particular database connection to use.
+Sometimes you need to change connection settings from within your code. You may wish to do this for example if you have a single-tenanted website. Your code would need to first run and work out which tenant is needed, and then pick a particular database connection to use.
     
 You can alter connections:
 
@@ -279,7 +279,7 @@ Alternatively you can update a connection that already exists:
 SwapCon::updateDB('tenant', ['database' => $tenantDB]);
 ```
 
-***Note:*** The purpose of this library is to help you manage connections, it won't try to manage the actual multi-tenancy. You will need to determine the tenant and set the connections yourself.
+***Note:*** The purpose of this library is to help you manage connections, it won't try to manage the actual single-tenancy. You will need to determine the tenant and set the connections yourself.
 
 ## Testing
 

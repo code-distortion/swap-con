@@ -24,21 +24,24 @@ class SwapCon
      *
      * @var string
      */
-    protected const CONFIG_NAME = 'code-distortion.swapcon';
+    const CONFIG_NAME = 'code-distortion.swapcon';
+    // PHP7.1 protected const CONFIG_NAME = 'code-distortion.swapcon';
 
     /**
      * The prefix given to swap-con .env settings.
      *
      * @var string
      */
-    protected const ENV_PREFIX = 'SWAPCON';
+    const ENV_PREFIX = 'SWAPCON';
+    // PHP7.1 protected const ENV_PREFIX = 'SWAPCON';
 
     /**
      * The names of the "connections" array inside each config file that can be added to.
      *
      * @var array
      */
-    protected const CONNECT_ARRAY_NAMES = [
+    const CONNECT_ARRAY_NAMES = [
+    // PHP7.1 protected const CONNECT_ARRAY_NAMES = [
         'broadcasting' => 'connections',
         'cache' => 'stores',
         'database' => 'connections',
@@ -54,7 +57,8 @@ class SwapCon
      *
      * @var integer
      */
-    protected const MAX_RECURSE_DEPTH = 32;
+    const MAX_RECURSE_DEPTH = 32;
+    // PHP7.1 protected const MAX_RECURSE_DEPTH = 32;
 
     /**
      * An internal cache of the replacement connections that have already been used.
@@ -81,8 +85,8 @@ class SwapCon
      */
     protected function resolveConnectionRecurse(
         string $config,
-        ?string $connection,
-        ?string $origConName,
+        string $connection = null, // PHP7.1 ?string $connection,
+        string $origConName = null, // PHP7.1 ?string $origConName,
         int $depth
     ): string {
 
@@ -166,8 +170,8 @@ class SwapCon
      */
     protected function buildConData(
         array $configData,
-        ?string $config,
-        ?string $cloneFrom
+        string $config = null, // PHP7.1 ?string $config,
+        string $cloneFrom = null // PHP7.1 ?string $cloneFrom
     ): array {
 
         // use an existing connection as a template to build the new connection's values
@@ -199,7 +203,7 @@ class SwapCon
         string $connection,
         array $configData,
         bool $allowOverwrite = false
-    ): void {
+    ) { // PHP7.1 ): void {
 
         $conGroup = static::CONNECT_ARRAY_NAMES[$config];
         $connectionExists = (bool) config("$config.$conGroup.$connection");

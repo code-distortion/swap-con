@@ -15,7 +15,7 @@ class SwapConServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    public function register(): void
+    public function register() // PHP7.1 ): void
     {
         $this->app->bind('SwapCon', function () {
             return new SwapCon();
@@ -27,7 +27,7 @@ class SwapConServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    public function boot(): void
+    public function boot() // PHP7.1 ): void
     {
         $this->initialiseConfig();
     }
@@ -51,7 +51,7 @@ class SwapConServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    protected function initialiseConfig(): void
+    protected function initialiseConfig() // PHP7.1 ): void
     {
         // initialise the config
         $configPath = __DIR__.'/../config/config.php';
