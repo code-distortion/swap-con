@@ -5,6 +5,7 @@ namespace CodeDistortion\SwapCon;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 use Dotenv\Dotenv;
 use Dotenv\Environment\DotenvFactory;
+use Dotenv\Exception\InvalidPathException;
 use Dotenv\Parser;
 
 /**
@@ -26,44 +27,50 @@ trait BuildConfigTrait
             $directory = base_path();
         }
 
-        // passing no factories stops Dotenv from populating to getenv(), $_ENV and $_SERVER
-        $length = mb_strlen(static::ENV_PREFIX);
-        // phpdotenv 4+
-        if (method_exists(Dotenv::class, 'createImmutable')) {
-            $dotenv = Dotenv::createImmutable($directory, $filename);
-            $values = $dotenv->load();
-        // phpdotenv 3+
-        } elseif (class_exists(DotenvFactory::class)) {
-            $factory = new DotenvFactory([]);
-            $dotenv = Dotenv::create($directory, $filename, $factory);
-            $values = $dotenv->load();
-        // older phpdotenv
-        } else {
-            $dotenv = new Dotenv($directory, $filename);
+        $values = [];
+        try {
 
-            // split the NAME=VALUE parts up
-            $values = [];
-            foreach ($dotenv->load() as $row) {
+            // phpdotenv 4+
+            if (method_exists(Dotenv::class, 'createImmutable')) {
+                $dotenv = Dotenv::createImmutable($directory, $filename);
+                $values = $dotenv->load();
+                // phpdotenv 3+
+            } elseif (class_exists(DotenvFactory::class)) {
+                // passing no factories stops Dotenv from populating to getenv(), $_ENV and $_SERVER
+                $factory = new DotenvFactory([]);
+                $dotenv = Dotenv::create($directory, $filename, $factory);
+                $values = $dotenv->load();
+                // older phpdotenv
+            } else {
+                $dotenv = new Dotenv($directory, $filename);
 
-                $temp = explode('=', $row);
-                if (count($temp) >= 2) {
+                // split the NAME=VALUE parts up
+                $values = [];
+                foreach ($dotenv->load() as $row) {
 
-                    // early phpdotenv around 2.2 doesn't have Parser
-                    if (class_exists(Parser::class)) {
-                        $name = Parser::parseName(array_shift($temp));
-                        $value = Parser::parseName(implode('=', $temp));
-                    } else {
-                        $name = array_shift($temp);
-                        $value = implode('=', $temp);
+                    $temp = explode('=', $row);
+                    if (count($temp) >= 2) {
+
+                        // early phpdotenv around 2.2 doesn't have Parser
+                        if (class_exists(Parser::class)) {
+                            $name = Parser::parseName(array_shift($temp));
+                            $value = Parser::parseName(implode('=', $temp));
+                        } else {
+                            $name = array_shift($temp);
+                            $value = implode('=', $temp);
+                        }
+                        $values[$name] = $value;
                     }
-                    $values[$name] = $value;
                 }
             }
+        } catch (InvalidPathException $e) {
+            // fail gracefully if the .env file couldn't be found
         }
 
 
 
         // pick out the relevant settings
+        $length = mb_strlen(static::ENV_PREFIX);
         $groups = $connectionData = [];
         foreach ($values as $name => $value) {
 

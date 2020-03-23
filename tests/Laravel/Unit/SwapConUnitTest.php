@@ -7,6 +7,7 @@ use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 use CodeDistortion\SwapCon\Tests\Laravel\TestCase;
 use CodeDistortion\SwapCon\SwapConFacade as SwapCon;
+use Dotenv\Exception\InvalidPathException;
 use Exception;
 use PHPUnit\Framework\Constraint\Exception as ConstraintException;
 
@@ -122,6 +123,26 @@ class SwapConUnitTest extends TestCase
         config(['code-distortion.swapcon' => $configData]); // store the values in Laravel's config
 
         return $configData;
+    }
+
+
+
+
+
+    /**
+     * Test that the settings in the .env file are interpreted correctly.
+     *
+     * @test
+     * @return void
+     */
+    public function test_that_a_missing_env_file_is_gracefully_handled() // PHP7.1 ): void
+    {
+        $envPath = realpath(__DIR__.'/../../');
+        $envFilename = '.missing.env';
+
+        $this->assertNotThrows(InvalidPathException::class, function () use ($envPath, $envFilename) {
+            SwapCon::buildConfig($envPath, $envFilename);
+        });
     }
 
 
