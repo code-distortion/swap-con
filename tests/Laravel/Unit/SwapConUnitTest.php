@@ -140,9 +140,13 @@ class SwapConUnitTest extends TestCase
         $envPath = realpath(__DIR__.'/../../');
         $envFilename = '.missing.env';
 
-        $this->assertNotThrows(InvalidPathException::class, function () use ($envPath, $envFilename) {
-            SwapCon::buildConfig($envPath, $envFilename);
-        });
+        // this doesn't work on all versions of Laravel
+//        $this->assertNotThrows(InvalidPathException::class, function () use ($envPath, $envFilename) {
+//            SwapCon::buildConfig($envPath, $envFilename);
+//        });
+
+        SwapCon::buildConfig($envPath, $envFilename);
+        $this->assertTrue(true);
     }
 
 
