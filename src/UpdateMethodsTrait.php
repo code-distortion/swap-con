@@ -138,6 +138,6 @@ trait UpdateMethodsTrait
         string $connection,
         array $configData
     ) { // PHP7.1 : void
-        $this->copyConnection($config, $connection, $connection, $configData, true);
+        $this->cloneConnection($config, $connection, $connection, $configData, true);
     }
 }

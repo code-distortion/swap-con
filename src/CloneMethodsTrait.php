@@ -8,7 +8,7 @@ use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 /**
  * Trait containing SwapCon's public "swap" methods.
  */
-trait CopyMethodsTrait
+trait CloneMethodsTrait
 {
 
     /**
@@ -22,13 +22,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyBroadcast(
+    public function cloneBroadcast(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyConnection('broadcasting', $sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneConnection('broadcasting', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
     /**
@@ -42,13 +42,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyCache(
+    public function cloneCache(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyConnection('cache', $sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneConnection('cache', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
     /**
@@ -62,13 +62,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyDatabase(
+    public function cloneDatabase(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyConnection('database', $sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneConnection('database', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
     /**
@@ -84,13 +84,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyDB(
+    public function cloneDB(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyDatabase($sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneDatabase($sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
     /**
@@ -104,13 +104,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyFilesystem(
+    public function cloneFilesystem(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyConnection('filesystems', $sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneConnection('filesystems', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
     /**
@@ -124,13 +124,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyLog(
+    public function cloneLog(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyConnection('logging', $sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneConnection('logging', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
     /**
@@ -144,13 +144,13 @@ trait CopyMethodsTrait
      * @throws InvalidConfigException        Thrown when the connection's template couldn't be found.
      * @throws ConnectionResolutionException Thrown when the connection already exists.
      */
-    public function copyQueue(
+    public function cloneQueue(
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,
         array $configData = [],
         bool $allowOverwrite = false
     ) { // PHP7.1 ): void {
-        $this->copyConnection('queue', $sourceCon, $newCon, $configData, $allowOverwrite);
+        $this->cloneConnection('queue', $sourceCon, $newCon, $configData, $allowOverwrite);
     }
 
 
@@ -167,7 +167,7 @@ trait CopyMethodsTrait
      * @param boolean     $allowOverwrite Allow a connection to be overwritten.
      * @return void
      */
-    protected function copyConnection(
+    protected function cloneConnection(
         string $config,
         string $sourceCon = null, // PHP7.1 ?string $sourceCon,
         string $newCon,

@@ -13,7 +13,7 @@ use DB;
 class SwapCon
 {
     use BuildConfigTrait;
-    use CopyMethodsTrait;
+    use CloneMethodsTrait;
     use ResolveMethodsTrait;
     use SwapMethodsTrait;
     use UpdateMethodsTrait;
@@ -125,7 +125,7 @@ class SwapCon
 
                 // add it to the Laravel config ready for use
                 $resolvedConName = $conInfo['name'];
-                $this->copyConnection($config, $conInfo['clone'], $resolvedConName, $conInfo['values']);
+                $this->cloneConnection($config, $conInfo['clone'], $resolvedConName, $conInfo['values']);
 
             // or see if a SWAPCON GROUP with this name exists
             } elseif ($groupConnections = config(static::CONFIG_NAME.".groups.$config.$connection")) {
@@ -147,7 +147,7 @@ class SwapCon
                     // "clone" the connection from Laravel's config
                     // add it to the Laravel config under the new name ready for use
                     $resolvedConName = $connection;
-                    $this->copyConnection($config, $cloneFrom, $resolvedConName, []);
+                    $this->cloneConnection($config, $cloneFrom, $resolvedConName, []);
                 }
             }
         }

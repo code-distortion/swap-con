@@ -20,7 +20,7 @@ class SwapConUnitTest extends TestCase
 {
 
     /**
-     * Provide data for the test_that_exceptions_are_thrown_when_clone_sources_arent_present test
+     * Provide data for the test_that_exceptions_are_thrown_when_clone_sources_aren't_present test
      * Provide data for the test_that_circular_references_generates_an_exception test
      * Provide data for the test_that_exceptions_are_thrown_when_connections_are_unresolvable test
      * Provide data for the test_that_connections_resolve_properly test
@@ -34,7 +34,7 @@ class SwapConUnitTest extends TestCase
     {
         return [
             'broadcast' => [
-                'copyBroadcast',
+                'cloneBroadcast',
                 'updateBroadcast',
                 'resolveBroadcast',
                 'useBroadcast',
@@ -43,7 +43,7 @@ class SwapConUnitTest extends TestCase
                 'connections',
             ],
             'cache' => [
-                'copyCache',
+                'cloneCache',
                 'updateCache',
                 'resolveCache',
                 'useCache',
@@ -52,7 +52,7 @@ class SwapConUnitTest extends TestCase
                 'stores',
             ],
             'database' => [
-                'copyDatabase',
+                'cloneDatabase',
                 'updateDatabase',
                 'resolveDatabase',
                 'useDatabase',
@@ -61,7 +61,7 @@ class SwapConUnitTest extends TestCase
                 'connections',
             ],
             'DB' => [
-                'copyDB',
+                'cloneDB',
                 'updateDB',
                 'resolveDB',
                 'useDB',
@@ -70,7 +70,7 @@ class SwapConUnitTest extends TestCase
                 'connections',
             ],
             'filesystem' => [
-                'copyFilesystem',
+                'cloneFilesystem',
                 'updateFilesystem',
                 'resolveFilesystem',
                 'useFilesystem',
@@ -79,7 +79,7 @@ class SwapConUnitTest extends TestCase
                 'disks',
             ],
             'log' => [
-                'copyLog',
+                'cloneLog',
                 'updateLog',
                 'resolveLog',
                 'useLog',
@@ -88,7 +88,7 @@ class SwapConUnitTest extends TestCase
                 'channels',
             ],
             'queue' => [
-                'copyQueue',
+                'cloneQueue',
                 'updateQueue',
                 'resolveQueue',
                 'useQueue',
@@ -100,7 +100,7 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Build and set the swapcon config.
+     * Build and set the swap-con config.
      *
      * @param array  $reuse       The fallback 'reuse' section of the config.
      * @param array  $clone       The fallback 'clone' section of the config.
@@ -231,7 +231,7 @@ class SwapConUnitTest extends TestCase
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -241,7 +241,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_exceptions_are_thrown_when_clone_sources_arent_present(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -270,7 +270,7 @@ class SwapConUnitTest extends TestCase
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -280,7 +280,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_circular_references_generates_an_exception(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -309,7 +309,7 @@ class SwapConUnitTest extends TestCase
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -319,7 +319,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_exceptions_are_thrown_when_connections_are_unresolvable(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -348,7 +348,7 @@ class SwapConUnitTest extends TestCase
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -358,7 +358,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_connections_resolve_properly(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -368,8 +368,8 @@ class SwapConUnitTest extends TestCase
     ) { // PHP7.1 ): void {
 
         $resolveCallable = ['SwapCon', $resolveMethod];
-        $copyCallable = ['SwapCon', $copyMethod];
-        if ((is_callable($resolveCallable)) && (is_callable($copyCallable))) { // to please phpstan
+        $cloneCallable = ['SwapCon', $cloneMethod];
+        if ((is_callable($resolveCallable)) && (is_callable($cloneCallable))) { // to please phpstan
 
             // set up the swap-con config, as if it was built from the .env file
             $swapConConfig = [
@@ -417,9 +417,9 @@ class SwapConUnitTest extends TestCase
             config(['code-distortion.swapcon' => $swapConConfig]);
 
 
-            // set up the original connection to copy from
+            // set up the original connection to clone from
             $expected = ['a' => 'b'];
-            forward_static_call_array($copyCallable, [null, 'test1', $expected]);
+            forward_static_call_array($cloneCallable, [null, 'test1', $expected]);
 
 
             // resolve a connection directly - with a 'clone'
@@ -469,11 +469,11 @@ class SwapConUnitTest extends TestCase
     }
 
     /**
-     * Test that connection copying works properly.
+     * Test that connection cloning works properly.
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -483,7 +483,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_connections_can_be_copied(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -492,16 +492,16 @@ class SwapConUnitTest extends TestCase
         string $configConnectionName
     ) { // PHP7.1 ): void {
 
-        $copyCallable = ['SwapCon', $copyMethod];
-        if (is_callable($copyCallable)) { // to please phpstan
+        $cloneCallable = ['SwapCon', $cloneMethod];
+        if (is_callable($cloneCallable)) { // to please phpstan
 
-            // set up the original connection to copy from
+            // set up the original connection to clone from
             $expected = ['a' => 'b'];
-            forward_static_call_array($copyCallable, [null, 'test1', $expected]);
+            forward_static_call_array($cloneCallable, [null, 'test1', $expected]);
             $this->assertSame($expected, config("$configName.$configConnectionName.test1"));
 
-            // copy this connection - with no values
-            forward_static_call_array($copyCallable, ['test1', 'test2']);
+            // clone this connection - with no values
+            forward_static_call_array($cloneCallable, ['test1', 'test2']);
             $this->assertSame($expected, config("$configName.$configConnectionName.test2"));
 
             // PHPUnit\Framework\Constraint\Exception is required by jchook/phpunit-assert-throws
@@ -510,19 +510,19 @@ class SwapConUnitTest extends TestCase
                 // an exception will be thrown because the connection already exists
                 $this->assertThrows(
                     ConnectionResolutionException::class,
-                    function () use ($copyCallable) {
-                        forward_static_call_array($copyCallable, ['test1', 'test2', []]);
+                    function () use ($cloneCallable) {
+                        forward_static_call_array($cloneCallable, ['test1', 'test2', []]);
                     }
                 );
             }
 
             // won't throw an exception because the flag is set
-            forward_static_call_array($copyCallable, ['test1', 'test2', [], true]);
+            forward_static_call_array($cloneCallable, ['test1', 'test2', [], true]);
             $this->assertSame($expected, config("$configName.$configConnectionName.test2"));
 
-            // copy this connection - with extra values
+            // clone this connection - with extra values
             $expected = ['a' => 'c', 'd' => 'e'];
-            forward_static_call_array($copyCallable, ['test1', 'test3', $expected]);
+            forward_static_call_array($cloneCallable, ['test1', 'test3', $expected]);
             $this->assertSame($expected, config("$configName.$configConnectionName.test3"));
         }
     }
@@ -532,7 +532,7 @@ class SwapConUnitTest extends TestCase
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -542,7 +542,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_connections_can_be_updated(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -552,12 +552,12 @@ class SwapConUnitTest extends TestCase
     ) { // PHP7.1 ): void {
 
         $updateCallable = ['SwapCon', $updateMethod];
-        $copyCallable = ['SwapCon', $copyMethod];
-        if ((is_callable($updateCallable)) && (is_callable($copyCallable))) { // to please phpstan
+        $cloneCallable = ['SwapCon', $cloneMethod];
+        if ((is_callable($updateCallable)) && (is_callable($cloneCallable))) { // to please phpstan
 
-            // set up the original connection to copy from
+            // set up the original connection to clone from
             $expected = ['a' => 'b'];
-            forward_static_call_array($copyCallable, [null, 'test1', $expected]);
+            forward_static_call_array($cloneCallable, [null, 'test1', $expected]);
 
             // update this connection - with no values
             forward_static_call_array($updateCallable, ['test1', []]);
@@ -575,7 +575,7 @@ class SwapConUnitTest extends TestCase
      *
      * @test
      * @dataProvider staticMethodDataProvider
-     * @param string $copyMethod           The 'copy' method to run.
+     * @param string $cloneMethod          The 'clone' method to run.
      * @param string $updateMethod         The 'update' method to run.
      * @param string $resolveMethod        The 'resolve' method to run.
      * @param string $useMethod            The 'use' method to run.
@@ -585,7 +585,7 @@ class SwapConUnitTest extends TestCase
      * @return void
      */
     public function test_that_connections_can_be_altered(
-        string $copyMethod,
+        string $cloneMethod,
         string $updateMethod,
         string $resolveMethod,
         string $useMethod,
@@ -596,15 +596,15 @@ class SwapConUnitTest extends TestCase
 
         $useCallable = ['SwapCon', $useMethod];
         $swapCallable = ['SwapCon', $swapMethod];
-        $copyCallable = ['SwapCon', $copyMethod];
+        $cloneCallable = ['SwapCon', $cloneMethod];
         if ((is_callable($useCallable))
         && (is_callable($swapCallable))
-        && (is_callable($copyCallable))) { // to please phpstan
+        && (is_callable($cloneCallable))) { // to please phpstan
 
             // set up the available connections
-            forward_static_call_array($copyCallable, [null, 'test1', ['a' => 'b']]);
-            forward_static_call_array($copyCallable, [null, 'test2', ['a' => 'b']]);
-            forward_static_call_array($copyCallable, [null, 'test3', ['a' => 'b']]);
+            forward_static_call_array($cloneCallable, [null, 'test1', ['a' => 'b']]);
+            forward_static_call_array($cloneCallable, [null, 'test2', ['a' => 'b']]);
+            forward_static_call_array($cloneCallable, [null, 'test3', ['a' => 'b']]);
 
             // 'use' the initial connection
             forward_static_call_array($useCallable, ['test1']);
