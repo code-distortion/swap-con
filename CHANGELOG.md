@@ -6,10 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 
+## [0.3.0] - 2020-05-02
+
+### Changed (breaking)
+- Renamed the `copyBroadcast`, `copyCache`, `copyDatabase`, `copyDB`, `copyFilesystem`, `copyLog`, `copyQueue` methods to `cloneBroadcast`, `cloneCache`, `cloneDatabase`, `cloneDB`, `cloneFilesystem`, `cloneLog`, `cloneQueue` respectively for consistency
+
+
+
 ## [0.2.4] - 2020-03-23
 
 ### Changed
-- Tweaked the "missing .env" unit test so it works with all versions of Laravel.
+- Tweaked the "missing .env" unit test so it works with all versions of Laravel
 
 
 
