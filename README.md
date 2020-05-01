@@ -9,35 +9,39 @@
 
 ***code-distortion/swap-con*** is a Laravel package that gives you control over which database to use and when to change.
 
-In fact, SwapCon lets you change **broadcasting**, **cache**, **filesystem**, **logging** and **queue** connections as well.
+Example:
 
 ``` php
-// swap the current database connection for the duration of the callback
+// swap the database connection for the duration of the callback
 SwapCon::swapDB('mysql2', $callback); // or ->swapDatabase(..)
 ```
+
+In fact, SwapCon lets you change **broadcasting**, **cache**, **filesystem**, **logging** and **queue** connections as well.
+
+---
 
 Have you ever wanted to change database connections at runtime in Laravel but found it difficult?
 
 You may have tried some of these methods but found them limiting:
 
 ``` php
-// altering the connection for a particular query
+// alter the connection for a particular query
 DB::connection('mysql2')->table('users')->all();
 ```
 
 ``` php
-// hard-coding the connection a model uses
+// hard-code the connection a model uses
 class SomeModel extends Eloquent {
     protected $connection = 'mysql2';
 }
-// or changing the connection for a particular model instance
+// or change the connection for a particular model instance
 $someModel = new SomeModel;
 $someModel->setConnection('mysql2');
 $someModel->find(1);
 ```
 
 ``` php
-// specifying read/write connections in config/database.php
+// specify read/write connections in config/database.php
 'mysql' => [
     'read' => [
         'host' => [
@@ -86,7 +90,7 @@ SwapCon integrates with Laravel 5.5+ automatically thanks to Laravel's package a
 
 ### Config file
 
-Use the following command to publish the config/swapcon.php config file:
+Use the following command to publish the config/code-distortion.swapcon.php config file:
 
 ``` bash
 php artisan vendor:publish --provider="CodeDistortion\SwapCon\SwapConServiceProvider" --tag="config"
@@ -225,12 +229,12 @@ When SwapCon finds a group, it will pick a connection from it randomly. If this 
 
 ### Fallback connections
 
-Now, if you have some of these read-only databases in production for example but not locally in your development environment, the above code will generate an exception because the connection or group 'mysql-ro' hasn't been defined anywhere.
+Now, if you have some of these read-only databases in production for example but not locally in your development environment, the above code will generate an exception for you because you haven't defined the 'mysql-ro' connection or group.
 
-This is where ***fallback connections*** come in. You can specify in `config/swapcon.php` fallback connections to use when they can't be found.
+This is where ***fallback connections*** come in. You can specify in `config/code-distortion.swapcon.php` fallback connections to use when they can't be found.
 
 ``` php
-// config/swapcon.php
+// config/code-distortion.swapcon.php
 'fallbacks' => [
     'reuse' => [
         'database' => [
@@ -247,13 +251,13 @@ This is where ***fallback connections*** come in. You can specify in `config/swa
 
 Here you can specify a connection to simply ***reuse*** when needed. In this example the 'mysql' connection will continue being used unless a 'mysql-ro' connection or group exist in the current .env file.
 
-Alternately you can choose a connection to ***clone*** when needed. If swapped above, the 'mysql' connection details will be cloned and a separate new connection made to that same database (unless a 'mysql-ro' connection or group exist in the current .env file).
+Alternately you can choose a connection to ***clone*** when needed. If the line above is uncommented, the 'mysql' connection details will be cloned and a separate new connection will be made to that same database (unless a 'mysql-ro' connection or group exist in the current .env file).
 
 ***NOTE:*** As a rule of thumb you should add a fallback for each connection you refer to by name in your code. This will save exceptions from occurring when the connections can't be resolved.
 
-### Changing connection settings in your code
+### Altering the available connections on the fly
 
-Sometimes you need to change connection settings from within your code. You may wish to do this for example if you have a single-tenanted website. Your code would need to first run and work out which tenant is needed, and then pick a particular database connection to use.
+Sometimes you need to change connection settings from within your code. For example you may wish to do this if you have a website that connects to different databases, one for each client. Your code would need to first run to work out which client is needed, and then pick their database connection.
     
 You can alter connections:
 
@@ -261,12 +265,12 @@ You can alter connections:
 // some code to detect the tenant to use…
 $tenantDB = 'client1';
 
-// create a new 'tenant' connection
-SwapCon::copyDB('mysql', 'tenant', ['database' => $tenantDB]);
+// create a new connection called 'tenant' by cloning the 'mysql' connection and override the 'database' value
+SwapCon::cloneDB('mysql', 'tenant', ['database' => $tenantDB]);
 // (allow for the 'tenant' connection to be overwritten if it already exists)
-SwapCon::copyDB('mysql', 'tenant', ['database' => $tenantDB], true);
+SwapCon::cloneDB('mysql', 'tenant', ['database' => $tenantDB], true);
 
-// you can then access this 'tenant' connection like any other connection. eg.
+// then you can access the new 'tenant' connection like any other. eg.
 SwapCan::swapDB('tenant', $callback);
 SwapCan::useDB('tenant');
 DB::connection('tenant')->table('users')->all();
@@ -279,7 +283,7 @@ Alternatively you can update a connection that already exists:
 SwapCon::updateDB('tenant', ['database' => $tenantDB]);
 ```
 
-***Note:*** The purpose of this library is to help you manage connections, it won't try to manage the actual single-tenancy. You will need to determine the tenant and set the connections yourself.
+***Note:*** The purpose of this library is to help you manage connections, it doesn't help manage the tenancy choosing process. You will need to determine the tenant database to use yourself.
 
 ## Testing
 
