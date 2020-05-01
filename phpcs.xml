@@ -13,6 +13,7 @@
     <rule ref="Squiz.Commenting.VariableComment" />
 
     <exclude-pattern>/.git/*</exclude-pattern>
+    <exclude-pattern>/build/*</exclude-pattern>
     <exclude-pattern>/vendor/*</exclude-pattern>
 
     <arg name="colors"/>
