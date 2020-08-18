@@ -2,6 +2,7 @@
 
 namespace CodeDistortion\SwapCon;
 
+use CodeDistortion\FluentDotEnv\FluentDotEnv;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 use Dotenv\Dotenv;
 use Dotenv\Environment\DotenvFactory;
@@ -27,51 +28,11 @@ trait BuildConfigTrait
             $directory = base_path();
         }
 
-        $values = [];
-        try {
-
-            // phpdotenv 4+
-            if (method_exists(Dotenv::class, 'createImmutable')) {
-                $dotenv = Dotenv::createImmutable($directory, $filename);
-                $values = $dotenv->load();
-                // phpdotenv 3+
-            } elseif (class_exists(DotenvFactory::class)) {
-                // passing no factories stops Dotenv from populating to getenv(), $_ENV and $_SERVER
-                $factory = new DotenvFactory([]);
-                $dotenv = Dotenv::create($directory, $filename, $factory);
-                $values = $dotenv->load();
-                // older phpdotenv
-            } else {
-                $dotenv = new Dotenv($directory, $filename);
-
-                // split the NAME=VALUE parts up
-                $values = [];
-                foreach ($dotenv->load() as $row) {
-
-                    $temp = explode('=', $row);
-                    if (count($temp) >= 2) {
-
-                        // early phpdotenv around 2.2 doesn't have Parser
-                        if (class_exists(Parser::class)) {
-                            $name = Parser::parseName(array_shift($temp));
-                            $value = Parser::parseName(implode('=', $temp));
-                        } else {
-                            $name = array_shift($temp);
-                            $value = implode('=', $temp);
-                        }
-                        $values[$name] = $value;
-                    }
-                }
-            }
-        } catch (InvalidPathException $e) {
-            // fail gracefully if the .env file couldn't be found
-        }
-
-
 
         // pick out the relevant settings
         $length = mb_strlen(static::ENV_PREFIX);
         $groups = $connectionData = [];
+        $values = FluentDotEnv::new()->safeLoad($directory.'/'.$filename)->all();
         foreach ($values as $name => $value) {
 
             if (mb_substr($name, 0, $length) == static::ENV_PREFIX) {
