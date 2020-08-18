@@ -81,12 +81,12 @@ $return = [
     'fallbacks' => [
         'reuse' => [
 //            'database' => [
-//                'mysqlro' => 'mysql',
+//                'mysql-ro' => 'mysql',
 //            ],
         ],
         'clone' => [
 //            'database' => [
-//                'mysqlro' => 'mysql',
+//                'mysql-ro' => 'mysql',
 //            ],
         ],
      ],

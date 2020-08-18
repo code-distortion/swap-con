@@ -7,7 +7,7 @@
 [![Buy us a tree](https://img.shields.io/badge/treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://offset.earth/treeware?gift-trees)
 [![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v2.0%20adopted-ff69b4.svg?style=flat-square)](CODE_OF_CONDUCT.md)
 
-***code-distortion/swap-con*** is a Laravel package that gives you control over which database to use and when to change.
+***code-distortion/swap-con*** is a Laravel package that gives you control over which **database** to use and when to change.
 
 Example:
 
@@ -265,7 +265,7 @@ You can alter connections:
 // some code to detect the tenant to use…
 $tenantDB = 'client1';
 
-// create a new connection called 'tenant' by cloning the 'mysql' connection and override the 'database' value
+// create a new connection called 'tenant' by cloning the 'mysql' connection, and override the 'database' value
 SwapCon::cloneDB('mysql', 'tenant', ['database' => $tenantDB]);
 // (allow for the 'tenant' connection to be overwritten if it already exists)
 SwapCon::cloneDB('mysql', 'tenant', ['database' => $tenantDB], true);
