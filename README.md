@@ -2,9 +2,9 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/code-distortion/swap-con.svg?style=flat-square)](https://packagist.org/packages/code-distortion/swap-con)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/code-distortion/swap-con?style=flat-square)
-![Laravel](https://img.shields.io/badge/laravel-5%2C%206%20%26%207-blue?style=flat-square)
+![Laravel](https://img.shields.io/badge/laravel-5%2C%206%2C%207%20%26%208-blue?style=flat-square)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/code-distortion/swap-con/run-tests?label=tests&style=flat-square)](https://github.com/code-distortion/swap-con/actions)
-[![Buy us a tree](https://img.shields.io/badge/treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://offset.earth/treeware?gift-trees)
+[![Buy The World a Tree](https://img.shields.io/badge/treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://plant.treeware.earth/code-distortion/swap-con)
 [![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v2.0%20adopted-ff69b4.svg?style=flat-square)](CODE_OF_CONDUCT.md)
 
 ***code-distortion/swap-con*** is a Laravel package that gives you control over which **database** to use and when to change.
@@ -63,6 +63,8 @@ $someModel->find(1);
 
 SwapCon is an alternative to these methods.
 
+
+
 ## Installation
 
 Install the package via composer:
@@ -70,6 +72,8 @@ Install the package via composer:
 ``` bash
 composer require code-distortion/swap-con
 ```
+
+
 
 ### Service provider &amp; facade registration
 
@@ -88,6 +92,8 @@ SwapCon integrates with Laravel 5.5+ automatically thanks to Laravel's package a
 ],
 ```
 
+
+
 ### Config file
 
 Use the following command to publish the config/code-distortion.swapcon.php config file:
@@ -95,6 +101,7 @@ Use the following command to publish the config/code-distortion.swapcon.php conf
 ``` bash
 php artisan vendor:publish --provider="CodeDistortion\SwapCon\SwapConServiceProvider" --tag="config"
 ```
+
 
 
 ## Usage
@@ -138,6 +145,8 @@ SwapCon::useQueue('sqs2');
 ```
 
 This might be all the functionality you need. Below are details on how to take SwapCon further.
+
+
 
 ### Custom connections
 
@@ -227,6 +236,8 @@ When SwapCon finds a group, it will pick a connection from it randomly. If this 
 
 ***Note:*** SwapCon won't enforce the read-only-ness of a database connection.
 
+
+
 ### Fallback connections
 
 Now, if you have some of these read-only databases in production for example but not locally in your development environment, the above code will generate an exception for you because you haven't defined the 'mysql-ro' connection or group.
@@ -254,6 +265,8 @@ Here you can specify a connection to simply ***reuse*** when needed. In this exa
 Alternately you can choose a connection to ***clone*** when needed. If the line above is uncommented, the 'mysql' connection details will be cloned and a separate new connection will be made to that same database (unless a 'mysql-ro' connection or group exist in the current .env file).
 
 ***NOTE:*** As a rule of thumb you should add a fallback for each connection you refer to by name in your code. This will save exceptions from occurring when the connections can't be resolved.
+
+
 
 ### Altering the available connections on the fly
 
@@ -285,49 +298,63 @@ SwapCon::updateDB('tenant', ['database' => $tenantDB]);
 
 ***Note:*** The purpose of this library is to help you manage connections, it doesn't help manage the tenancy choosing process. You will need to determine the tenant database to use yourself.
 
+
+
 ## Testing
 
 ``` bash
 composer test
 ```
 
+
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+
 
 ### SemVer
 
 This library uses [SemVer 2.0.0](https://semver.org/) versioning. This means that changes to `X` indicate a breaking change: `0.0.X`, `0.X.y`, `X.y.z`. When this library changes to version 1.0.0, 2.0.0 and so forth it doesn't indicate that it's necessarily a notable release, it simply indicates that the changes were breaking.
 
+
+
 ## Treeware
 
-You're free to use this package, but if it makes it to your production environment please plant or buy a tree for the world.
+This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/code-distortion/swap-con) to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
 
-It's now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to <a href="https://www.bbc.co.uk/news/science-environment-48870920">plant trees</a>. If you support this package and contribute to the Treeware forest you'll be creating employment for local families and restoring wildlife habitats.
 
-You can buy trees here [offset.earth/treeware](https://offset.earth/treeware?gift-trees)
-
-Read more about Treeware at [treeware.earth](http://treeware.earth)
 
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
+
+
 ### Code of conduct
 
 Please see [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+
+
 
 ### Security
 
 If you discover any security related issues, please email tim@code-distortion.net instead of using the issue tracker.
 
+
+
 ## Credits
 
 - [Tim Chandler](https://github.com/code-distortion)
 
+
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
 
 ## PHP Package Boilerplate
 

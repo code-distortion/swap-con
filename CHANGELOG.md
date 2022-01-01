@@ -6,11 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 
+## [0.3.2] - 2022-01-02
+
+### Added
+- Added support for PHP 8.0 and 8.1
+- Added phpstan ^1.0 to dev dependencies
+- Updated version of phpstan, testbench & fluent-dotenv dependencies
+- Updated to PSR12
+
+
+
 ## [0.3.1] - 2020-08-18
 
 ### Added
 - Added code-distortion/fluent-dotenv internally to read .env files instead of reading them directly
-- tweaks to documentation
 
 
 
