@@ -5,7 +5,7 @@ namespace CodeDistortion\SwapCon;
 use App;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
 use CodeDistortion\SwapCon\Exceptions\ConnectionResolutionException;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 /**
  * SwapCon - Manage swapping between different connections (like databases).
@@ -112,8 +112,10 @@ class SwapCon
 
         // if the result for this connection has been recorded already then use that, even if it resolved to null
         $resolvedConName = null;
-        if ((array_key_exists($config, $this->usedReplacements))
-        && (array_key_exists($connection, $this->usedReplacements[$config]))) {
+        if (
+            (array_key_exists($config, $this->usedReplacements))
+            && (array_key_exists($connection, $this->usedReplacements[$config]))
+        ) {
 
             $resolvedConName = $this->usedReplacements[$config][$connection];
 
@@ -121,25 +123,25 @@ class SwapCon
         } else {
 
             // see if a SWAPCON CONNECTION with this name exists
-            if ($conInfo = config(static::CONFIG_NAME.".connections.$config.$connection")) {
+            if ($conInfo = config(static::CONFIG_NAME . ".connections.$config.$connection")) {
 
                 // add it to the Laravel config ready for use
                 $resolvedConName = $conInfo['name'];
                 $this->cloneConnection($config, $conInfo['clone'], $resolvedConName, $conInfo['values']);
 
             // or see if a SWAPCON GROUP with this name exists
-            } elseif ($groupConnections = config(static::CONFIG_NAME.".groups.$config.$connection")) {
+            } elseif ($groupConnections = config(static::CONFIG_NAME . ".groups.$config.$connection")) {
 
                 // pick one - AT RANDOM
                 $resolvedConName = $groupConnections[array_rand($groupConnections)];
 
             // or see if a REUSE FALLBACK with this name exists
-            } elseif ($reuseConName = config(static::CONFIG_NAME.".fallbacks.reuse.$config.$connection")) {
+            } elseif ($reuseConName = config(static::CONFIG_NAME . ".fallbacks.reuse.$config.$connection")) {
 
                 $resolvedConName = $this->resolveConnectionRecurse($config, $reuseConName, $origConName, $depth + 1);
 
             // or see if a CLONE FALLBACK with this name exists
-            } elseif ($cloneFrom = config(static::CONFIG_NAME.".fallbacks.clone.$config.$connection")) {
+            } elseif ($cloneFrom = config(static::CONFIG_NAME . ".fallbacks.clone.$config.$connection")) {
 
                 // resolve this "cloneFrom" connection
                 if ($cloneFrom = $this->resolveConnectionRecurse($config, $cloneFrom, $origConName, $depth + 1)) {

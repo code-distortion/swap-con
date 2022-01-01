@@ -17,8 +17,8 @@ class ConnectionResolutionException extends SwapConException
     public static function maxRecurseDepth(string $config, string $connection): self
     {
         return new static(
-            'The connection "'.$config.'.'.$connection.'" could not be resolved'
-            .' - it seems to have circular references that loop indefinitely'
+            'The connection "' . $config . '.' . $connection . '" could not be resolved'
+            . ' - it seems to have circular references that loop indefinitely'
         );
     }
 
@@ -31,7 +31,7 @@ class ConnectionResolutionException extends SwapConException
      */
     public static function unresolvable(string $config, string $connection): self
     {
-        return new static('The connection "'.$config.'.'.$connection.'" could not be resolved');
+        return new static('The connection "' . $config . '.' . $connection . '" could not be resolved');
     }
 
     /**
@@ -43,6 +43,6 @@ class ConnectionResolutionException extends SwapConException
      */
     public static function connectionAlreadyExists(string $config, string $connection): self
     {
-        return new static('The connection "'.$config.'.'.$connection.'" cannot be stored, it already exists');
+        return new static('The connection "' . $config . '.' . $connection . '" cannot be stored, it already exists');
     }
 }

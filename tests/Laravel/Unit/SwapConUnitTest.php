@@ -18,7 +18,6 @@ use PHPUnit\Framework\Constraint\Exception as ConstraintException;
  */
 class SwapConUnitTest extends TestCase
 {
-
     /**
      * Provide data for the test_that_exceptions_are_thrown_when_clone_sources_aren't_present test
      * Provide data for the test_that_circular_references_generates_an_exception test
@@ -115,7 +114,7 @@ class SwapConUnitTest extends TestCase
                 'clone' => $clone,
             ],
         ];
-        $envPath = realpath(__DIR__.'/../../');
+        $envPath = realpath(__DIR__ . '/../../');
         $configData = array_merge(
             $configData,
             SwapCon::buildConfig($envPath, $envFilename)
@@ -137,7 +136,7 @@ class SwapConUnitTest extends TestCase
      */
     public function test_that_a_missing_env_file_is_gracefully_handled() // PHP7.1 ): void
     {
-        $envPath = realpath(__DIR__.'/../../');
+        $envPath = realpath(__DIR__ . '/../../');
         $envFilename = '.missing.env';
 
         // this doesn't work on all versions of Laravel
@@ -597,9 +596,7 @@ class SwapConUnitTest extends TestCase
         $useCallable = ['SwapCon', $useMethod];
         $swapCallable = ['SwapCon', $swapMethod];
         $cloneCallable = ['SwapCon', $cloneMethod];
-        if ((is_callable($useCallable))
-        && (is_callable($swapCallable))
-        && (is_callable($cloneCallable))) { // to please phpstan
+        if ((is_callable($useCallable)) && (is_callable($swapCallable)) && (is_callable($cloneCallable))) {
 
             // set up the available connections
             forward_static_call_array($cloneCallable, [null, 'test1', ['a' => 'b']]);
@@ -679,16 +676,16 @@ class SwapConUnitTest extends TestCase
         $return = '';
         if (is_array($value)) {
             if (count($value)) {
-                $return .= '['.PHP_EOL;
+                $return .= '[' . PHP_EOL;
                 foreach ($value as $index2 => $value2) {
                     $return .=
                         str_repeat('    ', $depth + 1)
-                        .var_export($index2, true)
-                        .' => '
-                        .static::varExport($value2, $depth + 1)
-                        .','.PHP_EOL;
+                        . var_export($index2, true)
+                        . ' => '
+                        . static::varExport($value2, $depth + 1)
+                        . ',' . PHP_EOL;
                 }
-                $return .= str_repeat('    ', $depth).']';
+                $return .= str_repeat('    ', $depth) . ']';
             } else {
                 $return .= '[]';
             }

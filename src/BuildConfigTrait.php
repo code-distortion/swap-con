@@ -4,10 +4,6 @@ namespace CodeDistortion\SwapCon;
 
 use CodeDistortion\FluentDotEnv\FluentDotEnv;
 use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
-use Dotenv\Dotenv;
-use Dotenv\Environment\DotenvFactory;
-use Dotenv\Exception\InvalidPathException;
-use Dotenv\Parser;
 
 /**
  * Trait containing SwapCon's method to build the config data from a .env file.
@@ -32,14 +28,16 @@ trait BuildConfigTrait
         // pick out the relevant settings
         $length = mb_strlen(static::ENV_PREFIX);
         $groups = $connectionData = [];
-        $values = FluentDotEnv::new()->safeLoad($directory.'/'.$filename)->all();
+        $values = FluentDotEnv::new()->safeLoad($directory . '/' . $filename)->all();
         foreach ($values as $name => $value) {
 
             if (mb_substr($name, 0, $length) == static::ENV_PREFIX) {
 
                 // look for GROUPS
                 // eg. "SWAPCON__DATABASE__GROUP__MYSQLRO"
-                if (preg_match('/^'.preg_quote(static::ENV_PREFIX).'_+GROUP_+([^_]+)_+([^_]+)$/', $name, $matches)) {
+                $regex1 = '/^' . preg_quote(static::ENV_PREFIX) . '_+GROUP_+([^_]+)_+([^_]+)$/';
+                $regex2 = '/^' . preg_quote(static::ENV_PREFIX) . '_+([^_]+)_+([^_]+)_+([^_]+)$/';
+                if (preg_match($regex1, $name, $matches)) {
 
                     $config = mb_strtolower($matches[1]);
                     $group = mb_strtolower($matches[2]);
@@ -52,11 +50,7 @@ trait BuildConfigTrait
 
                     // look for CONNECTION settings
                     // eg. "SWAPCON__DATABASE__MYSQLRO__HOST"
-                } elseif (preg_match(
-                    '/^'.preg_quote(static::ENV_PREFIX).'_+([^_]+)_+([^_]+)_+([^_]+)$/',
-                    $name,
-                    $matches
-                )) {
+                } elseif (preg_match($regex2, $name, $matches)) {
 
                     $config = mb_strtolower($matches[1]);
                     $connection = mb_strtolower($matches[2]);

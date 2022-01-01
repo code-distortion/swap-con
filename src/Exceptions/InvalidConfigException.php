@@ -7,7 +7,6 @@ namespace CodeDistortion\SwapCon\Exceptions;
  */
 class InvalidConfigException extends SwapConException
 {
-
     /**
      * Return a new instance when an unexpected config-type was specified.
      *
@@ -18,7 +17,7 @@ class InvalidConfigException extends SwapConException
     public static function invalidConfigTypeFound(string $config, array $available): self
     {
         return new static(
-            'The config type "'.$config.'" is not valid (try one of: '.implode(', ', $available).')'
+            'The config type "' . $config . '" is not valid (try one of: ' . implode(', ', $available) . ')'
         );
     }
 
@@ -31,7 +30,7 @@ class InvalidConfigException extends SwapConException
      */
     public static function templateNotFound(string $config, string $clone): self
     {
-        return new static('The '.$config.' connection to clone "'.$clone.'" was not found');
+        return new static('The ' . $config . ' connection to clone "' . $clone . '" was not found');
     }
 
     /**
@@ -43,6 +42,6 @@ class InvalidConfigException extends SwapConException
      */
     public static function noConnectionsInGroup(string $config, string $group): self
     {
-        return new static('The '.$config.' group "'.$group.'" is empty');
+        return new static('The ' . $config . ' group "' . $group . '" is empty');
     }
 }

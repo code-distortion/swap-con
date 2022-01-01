@@ -54,15 +54,14 @@ class SwapConServiceProvider extends BaseServiceProvider
     protected function initialiseConfig() // PHP7.1 ): void
     {
         // initialise the config
-        $configPath = __DIR__.'/../config/config.php';
+        $configPath = __DIR__ . '/../config/config.php';
         try {
             $this->mergeConfigFrom($configPath, 'code-distortion.swapcon');
         } catch (InvalidPathException $e) {
         }
 
         // allow the default config to be published
-        if ((!$this->app->environment('testing'))
-        && ($this->app->runningInConsole())) {
+        if ((!$this->app->environment('testing')) && ($this->app->runningInConsole())) {
 
             $this->publishes(
                 [$configPath => config_path('code-distortion.swapcon.php'),],

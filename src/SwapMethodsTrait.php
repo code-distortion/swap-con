@@ -10,7 +10,6 @@ use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
  */
 trait SwapMethodsTrait
 {
-
     /**
      * Swap the active (default) BROADCASTING connection to another and run the given closure.
      *

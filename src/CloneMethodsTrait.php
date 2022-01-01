@@ -10,7 +10,6 @@ use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
  */
 trait CloneMethodsTrait
 {
-
     /**
      * Copy a BROADCASTING connection to another.
      *

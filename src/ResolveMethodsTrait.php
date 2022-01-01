@@ -150,7 +150,7 @@ trait ResolveMethodsTrait
      */
     public function resolveAll(string $config = null) // PHP7.1 ): void
     {
-        $configs = config(static::CONFIG_NAME.".connections");
+        $configs = config(static::CONFIG_NAME . ".connections");
         if ($configs) {
             foreach ($configs as $curConfig => $connections) {
                 if ((is_null($config)) || ($curConfig == $config)) {

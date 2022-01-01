@@ -10,7 +10,6 @@ use CodeDistortion\SwapCon\Exceptions\InvalidConfigException;
  */
 trait UpdateMethodsTrait
 {
-
     /**
      * Update value/s in an existing BROADCASTING connection.
      *
