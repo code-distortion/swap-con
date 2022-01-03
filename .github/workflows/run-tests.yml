@@ -6,12 +6,10 @@ on:
     - cron: "0 0 * * 0"
 
 jobs:
-
   php8x-laravel-version-tests:
+
     name: Laravel - PHP ${{ matrix.php }} - TestBench ${{ matrix.testbench}} - ${{ matrix.os }} - ${{ matrix.dependency-prefer }}
-
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: true
       matrix:
@@ -32,7 +30,7 @@ jobs:
           extensions: bcmath, intl, mbstring
           coverage: none
 
-      # find out composer's cache directory on the current os - for the "Cache composer dependencies" step below
+      # find out composer's cache directory on the current os - for the "Cache dependencies (composer)" step below
       - name: Determine composer's cache directory
         id: composer-cache
         run: |
@@ -53,10 +51,9 @@ jobs:
         run: vendor/bin/phpunit
 
   php7x-laravel-version-tests:
+
     name: Laravel - PHP ${{ matrix.php }} - TestBench ${{ matrix.testbench}} - ${{ matrix.os }} - ${{ matrix.dependency-prefer }}
-
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: true
       matrix:
@@ -122,7 +119,7 @@ jobs:
           extensions: bcmath, intl, mbstring
           coverage: none
 
-      # find out composer's cache directory on the current os - for the "Cache composer dependencies" step below
+      # find out composer's cache directory on the current os - for the "Cache dependencies (composer)" step below
       - name: Determine composer's cache directory
         id: composer-cache
         run: |
@@ -143,10 +140,9 @@ jobs:
         run: vendor/bin/phpunit
 
   OS-tests:
+
     name: OS - PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-prefer }}
-
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: true
       matrix:
@@ -173,7 +169,7 @@ jobs:
           extensions: bcmath, fileinfo, intl, mbstring
           coverage: none
 
-      # find out composer's cache directory on the current os - for the "Cache composer dependencies" step below
+      # find out composer's cache directory on the current os - for the "Cache dependencies (composer)" step below
       - name: Determine composer's cache directory
         id: composer-cache
         run: |
