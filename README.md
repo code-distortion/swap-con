@@ -1,7 +1,7 @@
 # SwapCon
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/code-distortion/swap-con.svg?style=flat-square)](https://packagist.org/packages/code-distortion/swap-con)
-![PHP from Packagist](https://img.shields.io/packagist/php-v/code-distortion/swap-con?style=flat-square)
+![PHP Version](https://img.shields.io/badge/PHP-7.0%20to%208.1-blue?style=flat-square)
 ![Laravel](https://img.shields.io/badge/laravel-5%2C%206%2C%207%20%26%208-blue?style=flat-square)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/code-distortion/swap-con/run-tests?label=tests&style=flat-square)](https://github.com/code-distortion/swap-con/actions)
 [![Buy The World a Tree](https://img.shields.io/badge/treeware-%F0%9F%8C%B3-lightgreen?style=flat-square)](https://plant.treeware.earth/code-distortion/swap-con)
